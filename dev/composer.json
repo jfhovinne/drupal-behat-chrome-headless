@@ -2,7 +2,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "behat/behat": "~3.4",
+    "behat/behat": "3.3.1",
     "dmore/behat-chrome-extension": "~1",
     "drupal/drupal-extension": "~3.0"
   },
