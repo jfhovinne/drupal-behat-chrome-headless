@@ -11,7 +11,9 @@ before_install:
 script:
   - chmod 777 files
   - touch settings.php
+  - chmod 777 settings.php
   - docker-compose up -d
   - docker exec -u user -w /var/www/web dbch_web drush si standard --db-url=mysql://drupal:drupal@db:3306/drupal
+  - sleep 10
   - docker exec -u user -w /home/user/dev dbch_web composer install
   - docker exec -u user -w /home/user/dev dbch_web bin/behat -c tests/behat.yml tests/features/
