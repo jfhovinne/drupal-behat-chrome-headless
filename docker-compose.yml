@@ -1,0 +1,47 @@
+version: "2"
+services:
+  db:
+    image: mysql/mysql-server:$MYSQL_TAG
+    restart: always
+    environment:
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    container_name: "${PROJECT_NAME}_db"
+    networks:
+      - dockernet
+  web:
+    image: $WEB_IMAGE
+    restart: always
+    ports:
+      - "${WEB_NETWORK_PORT}:80"
+    depends_on:
+      - db
+    volumes:
+      - ./dev:/home/user/dev
+      - ./files:/var/www/web/sites/default/files
+      - ./modules:/var/www/web/modules
+      - ./profiles:/var/www/web/profiles
+      - ./settings.php:/var/www/web/sites/default/settings.php
+      - ./themes:/var/www/web/themes
+    container_name: "${PROJECT_NAME}_web"
+    networks:
+      - dockernet
+  chrome:
+    image: cleverway/debian-chrome-headless:debian-9-chrome-headless-unstable
+    volumes:
+      - ./dev:/home/user/dev
+    ports:
+      - 9222:9222
+    container_name: "${PROJECT_NAME}_chrome"
+    networks:
+      - dockernet
+networks:
+  dockernet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${NETWORK_SUBNET}
+          gateway: ${NETWORK_GATEWAY}

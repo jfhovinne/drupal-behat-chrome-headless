@@ -1,0 +1,12 @@
+{
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "behat/behat": "~3.4",
+    "dmore/behat-chrome-extension": "~1",
+    "drupal/drupal-extension": "~3.0"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}

@@ -1,0 +1,27 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
+    Behat\MinkExtension:
+      browser_name: chrome
+      sessions:
+        default:
+          chrome:
+            api_url: 'http://192.168.100.3:9222'
+            download_behavior: allow
+            download_path: /tmp
+            validate_certificate: false
+      base-url: 'http://web'
+      files_path: '/home/user/dev/tests/resources'
+    Drupal\DrupalExtension:
+      api_driver: 'drupal'
+      blackbox: ~
+      drupal:
+        drupal_root: '/var/www/web'
