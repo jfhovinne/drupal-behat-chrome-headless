@@ -1,5 +1,7 @@
 # Docker-based Drupal 8 + Behat + Chrome headless stack
 
+[![Build Status](https://travis-ci.org/jfhovinne/drupal-behat-chrome-headless.svg?branch=master)](https://travis-ci.org/jfhovinne/drupal-behat-chrome-headless)
+
 ## Usage
 
 ```
